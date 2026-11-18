@@ -1,0 +1,101 @@
+{
+  "app": {
+    "name": "Xinoobie Photobooth",
+    "version": "0.1.0",
+    "debug": false,
+    "title": "Xinoobie Photobooth",
+    "wake_lock": true,
+    "auto_start": true
+  },
+  "display": {
+    "fullscreen": true,
+    "window_width": 1920,
+    "window_height": 1080,
+    "dpi": 96
+  },
+  "camera": {
+    "device_id": "default",
+    "auto_focus": true,
+    "iso": 100,
+    "shutter_speed": 0.008,
+    "aperture": "f/5.6",
+    "white_balance": "auto",
+    "exposure_compensation": 0,
+    "profiles": {
+      "default": {
+        "name": "Default",
+        "iso": 400,
+        "shutter_speed": 0.008,
+        "aperture": "f/5.6",
+        "auto_focus": true
+      },
+      "low_light": {
+        "name": "Low Light",
+        "iso": 1600,
+        "shutter_speed": 0.032,
+        "aperture": "f/2.8",
+        "auto_focus": false
+      }
+    }
+  },
+  "session": {
+    "default_layout": "2x6",
+    "default_frame": "default",
+    "default_filter": "none",
+    "max_retakes": 3,
+    "default_countdown": 3,
+    "default_photo_count": 2,
+    "capture_interval": 0.5
+  },
+  "printing": {
+    "default_printer": "printer1",
+    "paper_sizes": {
+      "A6": {"width": 148, "height": 105},
+      "A7": {"width": 105, "height": 74},
+      "4x6": {"width": 102, "height": 152}
+    },
+    "dpi": 600,
+    "default_resolution": 600,
+    "print_queue_size": 10
+  },
+  "database": {
+    "db_path": "data/xinoobie.db",
+    "max_connections": 5,
+    "pool_size": 5,
+    "pool_recycle": 3600,
+    "echo": false
+  },
+  "storage": {
+    "max_usage_mb": 1000,
+    "retention_days": 30,
+    "backup_dir": "backups"
+  },
+  "logging": {
+    "level": "INFO",
+    "log_dir": "logs",
+    "max_bytes": 5242880,
+    "backup_count": 5
+  },
+  "ui": {
+    "theme": "dark",
+    "primary_color": "#3B82F6",
+    "surface_color": "#1E293B",
+    "text_color": "#F8FAFC",
+    "secondary_text_color": "#94A3B8",
+    "border_color": "#334155",
+    "root_background": "#0F172A",
+    "success_color": "#10B981",
+    "error_color": "#EF4444",
+    "warning_color": "#F59E0B"
+  },
+  "payment": {
+    "default_amount": 25000,
+    "supported_methods": ["cash", "qris_manual", "ewallet"],
+    "manual_qris_enabled": true
+  },
+  "api": {
+    "host": "127.0.0.1",
+    "port": 8000,
+    "allow_origins": ["http://localhost:3000"]
+  }
+}

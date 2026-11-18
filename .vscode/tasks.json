@@ -1,0 +1,60 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Install dev dependencies",
+      "type": "shell",
+      "command": "python",
+      "args": ["-m", "pip", "install", "-r", "requirements.txt"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "group": "build"
+    },
+    {
+      "label": "Run backend (FastAPI)",
+      "type": "shell",
+      "command": "python",
+      "args": ["-m", "uvicorn", "src.admin_dashboard.main:app", "--reload", "--port", "5000"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "group": "build"
+    },
+    {
+      "label": "Run frontend (npm)",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "frontend"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "group": "build"
+    },
+    {
+      "label": "Python smoke test (import check)",
+      "type": "shell",
+      "command": "python",
+      "args": ["-c", "import sys; sys.path.insert(0, 'src'); import database.models, app_core.config, camera_engine, photo_session_engine; print('ALL IMPORTS CLEAN'); import qrcode; print('qrcode ok'); import cv2; print('cv2 ok')"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "group": "test"
+    },
+    {
+      "label": "Run pytest",
+      "type": "shell",
+      "command": "python",
+      "args": ["-m", "pytest", "tests/", "-v"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "group": "test"
+    }
+  ]
+}

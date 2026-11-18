@@ -1,0 +1,94 @@
+# Xinoobie Photobooth - Environment & Dependency Specification
+
+## 1. Python Dependencies
+
+### Core Desktop Application
+```txt
+PySide6>=6.7.0
+numpy>=1.26.0
+opencv-python-headless>=4.9.0
+Pillow>=10.0.0
+pypng>=0.20.0
+```
+
+### Packaging & Installer
+```txt
+pyinstaller>=6.3.0
+```
+
+### Backend / API
+```txt
+fastapi>=0.109.0
+uvicorn>=0.27.0
+python-multipart>=0.0.6
+pydantic>=2.5.0
+```
+
+### QR Code & Scanning
+```txt
+qrcode>=7.4.0
+pylzma>=1.0.0
+```
+
+### Database
+```txt
+sqlalchemy>=2.0.25
+aiosqlite>=0.20.0
+```
+
+### Utilities
+```txt
+python-dotenv>=1.0.0
+screeninfo>=0.8.1
+cleaner>=0.3.0
+```
+
+### Testing
+```txt
+pytest>=8.0.0
+pytest-asyncio>=0.23.0
+pytest-cov>=5.0.0
+responses>=0.25.0
+freezegun>=1.2.0
+```
+
+## 2. Dependency Rationale
+
+| Package | Purpose | Notes |
+|---|---|---|
+| `PySide6` | Desktop GUI framework (Qt 6) | Touchscreen friendly, fullscreen support |
+| `PyQt6` alternative | — | Disabled in favor of consistent Qt 6 bindings |
+| `opencv-python-headless` | Image capture, processing, OpenCV functions | Headless = no GUI dependency for tests |
+| `Pillow` | Image format handling, compositing, filters | Complementary to OpenCV |
+| `numpy` | Numerical arrays for image processing | Required by OpenCV |
+| `qrcode` | QR code generation for digital delivery | |
+| `fastapi` + `uvicorn` | REST + WebSocket admin backend | Optional for Phase 1 |
+| `sqlalchemy` + `aiosqlite` | Database ORM + async SQLite | Migratable to PostgreSQL later |
+
+## 3. Verification of Compatibility (Per Master Prompt Rule)
+
+- **PySide6**: Actively maintained (2024-2026), supported on Windows 10/11. Qt 6.7+ supports touchscreen fullscreen.
+- **OpenCV**: `opencv-python-headless` is the headless version - suitable for our image processing without requiring a GUI display driver. Verified compatible with Python 3.9+.
+- **Pillow**: Latest version 10.x series is stable and widely used.
+- **qrcode**: Well-maintained, pure-Python + C-accelerated backend.
+- **FastAPI/uvicorn**: Mature, widely adopted Python web framework.
+- **SQLAlchemy 2.0**: Current stable major version.
+
+No SDK or library is being assumed to work with Sony ZV-E10 without verification in Phase 2. The Sony Camera Remote SDK will be evaluated against the target protocol in Phase 2.
+
+## 4. Data Storage Paths
+
+- `ASSETS_DIR/storage` — Session photos (permanent)
+- `ASSETS_DIR/temp` — Temp files (cleared on exit)
+- `ASSETS_DIR/backup` — Automatic backups
+- `ASSETS_DIR/logs` — Application logs
+
+## 5. Installation
+
+```bat
+# Windows (PowerShell)
+cd D:\PERCODINGAN AI\Xinoobie-Photobooth
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+```
